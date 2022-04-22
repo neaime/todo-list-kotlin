@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: com.example
+testFramework: junit
+sourceLanguage: kotlin
+buildTool: maven
+features: [app-name, data, data-jdbc, flyway, http-client, jdbc-hikari, junit, kotlin, kotlin-application, logback, maven, mysql, netty-server, readme, shade, testcontainers, yaml]

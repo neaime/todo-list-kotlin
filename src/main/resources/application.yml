@@ -1,0 +1,22 @@
+micronaut:
+  application:
+    name: tolist
+  server:
+    port: 8090
+datasources:
+  default:
+    url: jdbc:mysql://srv-captain--db-mysql-db:3306/todolist
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: root
+    password: felipeneaime0202
+    schema-generate: CREATE-DROP
+    dialect: MYSQL
+netty:
+  default:
+    allocator:
+      max-order: 3
+
+flyway:
+  datasources:
+    default:
+      enabled: true

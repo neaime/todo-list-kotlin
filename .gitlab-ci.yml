@@ -1,0 +1,27 @@
+stages:
+  - build
+  - deploy
+  - notify
+
+maven-build:
+  image: maven:3.5.3-jdk-8
+  stage: build
+  script:
+      - "mvn clean install"
+  artifacts:
+    paths:
+      - target/todolist-0.1.jar
+
+update-jar:
+  stage: deploy
+  when: on_success
+  script:
+      - cp target/todolist-0.1.jar /artifacts/todolist-0.1.jar
+      - >
+        curl -X POST "http://192.168.15.23:3000/api/v2/user/apps/webhooks/triggerbuild?namespace=captain&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InRva2VuVmVyc2lvbiI6Ijg0ZDQyYTU5LWI2OTEtNDBkMy05YjgyLWVhZmU4YTk0YzdiYiIsImFwcE5hbWUiOiJhcGktbWljcm9uYXV0IiwibmFtZXNwYWNlIjoiY2FwdGFpbiJ9LCJpYXQiOjE2NTA2NTQ1NDB9.yMuppIPq2xaDS6f-vd-Cy7GHhHzyOwuzGCb-SD1JOi0"
+
+notify-fail-buil:
+  stage: notify
+  when: on_failure
+  script:
+      - echo "Falha ao buildar o aplicativo"

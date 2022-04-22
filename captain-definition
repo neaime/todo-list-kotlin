@@ -1,0 +1,9 @@
+{
+	"schemaVersion" :2 ,
+	"dockerfileLines" : [
+		"FROM java:8",
+		"VOLUME /var/lib/docker/volumes/captain--todo-list/_data:/todo-list",
+		"WORKDIR /todo-list",
+		"CMD java -jar todolist-0.1.jar"
+	]
+}
