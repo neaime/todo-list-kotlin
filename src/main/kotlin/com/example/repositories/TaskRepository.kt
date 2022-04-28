@@ -13,4 +13,6 @@ interface TaskRepository : CrudRepository<Task, Long> {
     @Executable
     fun findByUserName(userName: String): Task?
     fun findByName(name: String?): Task?
+
+    fun getTaskById(id: Long): Task
 }

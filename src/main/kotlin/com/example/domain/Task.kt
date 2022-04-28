@@ -9,9 +9,9 @@ data class Task(
     @field:Id
     @field:GeneratedValue(GeneratedValue.Type.AUTO)
     var id: Long? = null,
-    var name: String,
-    var userName: String
+    var name: String?,
+    var userName: String?
 ) {
-    constructor(name: String, userName: String) :
+    constructor(name: String?, userName: String?) :
             this(null, name, userName)
 }

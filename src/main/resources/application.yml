@@ -5,11 +5,14 @@ micronaut:
     port: 8090
 datasources:
   default:
+    #url container
     url: jdbc:mysql://srv-captain--db-mysql-db:3306/todolist
+    #url local
+    #url: jdbc:mysql://db-mysql-db.captain.localhost:33006/todolist
     driverClassName: com.mysql.cj.jdbc.Driver
-    username: root
-    password: felipeneaime0202
-    schema-generate: CREATE-DROP
+    username: youruser
+    password: yourpassword
+    schema-generate: CREATE
     dialect: MYSQL
 netty:
   default:

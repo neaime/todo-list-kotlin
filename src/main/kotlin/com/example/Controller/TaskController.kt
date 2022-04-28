@@ -2,11 +2,9 @@ package com.example.Controller
 
 import com.example.services.TaskService
 import com.example.dtos.TaskDto
+import io.micronaut.data.annotation.Id
 import io.micronaut.http.HttpResponse
-import io.micronaut.http.annotation.Body
-import io.micronaut.http.annotation.Controller
-import io.micronaut.http.annotation.Get
-import io.micronaut.http.annotation.Post
+import io.micronaut.http.annotation.*
 import javax.inject.Inject
 import javax.validation.Valid
 
@@ -31,5 +29,20 @@ open class TaskController {
             taskService.createTask(taskDto)
                 .let { task -> HttpResponse.created(taskDto) }
                 ?: HttpResponse.badRequest()
+    }
+
+    @Put("/{id}")
+    fun alterTask(@Id id: @Valid Long, @Body newTask: TaskDto) {
+        if (taskService.taskExist(id)) {
+            taskService.updateTask(id, newTask)
+        }
+    }
+
+    @Delete("/{id}")
+    fun deleteTask(@Id id: Long) {
+        if (taskService.taskExist(id)) {
+            val task = taskService.findTaskById(id)
+            taskService.deleteTask(task)
+        }
     }
 }
